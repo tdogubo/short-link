@@ -7,7 +7,9 @@ const httpStatusCode = require("./utils/http-status-code");
 const app = express();
 
 morgan.token("body", function (req) {
-  return "body: " + JSON.stringify(req.body);
+  const body = "body: " + JSON.stringify(req.body);
+  const params = "params: " + JSON.stringify(req.params);
+  return `'${params}' '${body}'`
 });
 
 app.use(
@@ -19,7 +21,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/v1", router);
+app.use(router);
 
 app.use((req, res, next) => {
   res.status(httpStatusCode.NOT_ALLOWED).send("Not Allowed");

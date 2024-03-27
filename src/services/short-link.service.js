@@ -37,8 +37,18 @@ const decodeUrl = async (id) => {
   }
   return;
 };
-
+const updateVisits = async (id) => {
+  try {
+    await Url.increment("visited", {
+      where: { id },
+    });
+  } catch (error) {
+    console.error("Database Error:", error);
+  }
+  return;
+};
 module.exports = {
   encodeUrl,
   decodeUrl,
+  updateVisits,
 };

@@ -28,10 +28,6 @@ Url.init(
       allowNull: false,
       defaultValue: 0,
     },
-    created: {
-      type: Sequelize.DATE,
-      allowNull: false,
-    },
   },
 
   {

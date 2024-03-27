@@ -7,21 +7,10 @@ const validate = require("../../middleware/validation");
 
 const router = express.Router();
 
-router.post(
-  "/encode",
-  validate(ShortLinkValidation.bodyInput, "body"),
-  ShortLinkController.encoder
-);
-router.post(
-  "/decode",
-  validate(ShortLinkValidation.bodyInput, "body"),
-  ShortLinkController.decoder
-);
-
 router.get(
-  "/:id/statics",
+  "/:id",
   validate(ShortLinkValidation.params, "params"),
-  ShortLinkController.statistics
+  ShortLinkController.redirect
 );
 
 module.exports = router;
