@@ -9,11 +9,8 @@ class Url extends Sequelize.Model {}
 Url.init(
   {
     id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-    },
-    code: {
       type: Sequelize.TEXT,
+      allowNull: false,
       primaryKey: true,
     },
     originalUrl: {

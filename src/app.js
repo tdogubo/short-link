@@ -1,10 +1,20 @@
 const express = require("express");
+const helmet = require("helmet");
+const morgan = require("morgan");
 const router = require("./routes/v1");
 const httpStatusCode = require("./utils/http-status-code");
-const helmet = require("helmet");
 
 const app = express();
 
+morgan.token("body", function (req) {
+  return "body: " + JSON.stringify(req.body);
+});
+
+app.use(
+  morgan(
+    "[:date[clf]] :method HTTP/:http-version :status ':url' :body :response-time ms ':user-agent'"
+  )
+);
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
