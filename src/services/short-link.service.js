@@ -4,9 +4,7 @@ const { Url } = require("../models/short-link.model");
 const encodeUrl = async (url, baseUrl) => {
   try {
     const urlExists = await Url.findOne({
-      where: {
-        originalUrl: url,
-      },
+      where: { originalUrl: url },
     });
     let urlModel;
     if (urlExists) {
@@ -23,11 +21,24 @@ const encodeUrl = async (url, baseUrl) => {
     }
     return urlModel;
   } catch (error) {
-    console.error(error);
+    console.error("Database Error:", error);
+  }
+  return;
+};
+
+const decodeUrl = async (id) => {
+  try {
+    const urlExists = await Url.findOne({
+      where: { id },
+    });
+    if (urlExists) return urlExists;
+  } catch (error) {
+    console.error("Database Error:", error);
   }
   return;
 };
 
 module.exports = {
   encodeUrl,
+  decodeUrl,
 };
