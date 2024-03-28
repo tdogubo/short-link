@@ -17,7 +17,7 @@ Node version >=12.0.0 and `npm` or `yarn` installed on your machine.
 #### 1. Clone this repository:
 
 ``` bash
-git clone <repository-url>
+git clone https://github.com/tdogubo/short-link.git
 ```
 
 #### 2. Navigate to project directory:
